@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import os
+from scipy.ndimage import gaussian_filter
 
 st.set_page_config(layout="wide", page_title="Eye Tracking Demo")
 
@@ -16,7 +17,6 @@ if uploaded:
     st.write("Amostras:", len(df))
     st.dataframe(df.head())
 
-    # Painel lateral
     st.sidebar.header("Heatmap")
     stimulus = st.sidebar.text_input("Nome do stimulus (arquivo em /stimuli)", value=df["stimulus"].iloc[0])
 
@@ -26,11 +26,9 @@ if uploaded:
         if not os.path.exists(img_path):
             st.error("Arquivo não encontrado: " + img_path)
         else:
-            # Carregar imagem com PIL
             img = Image.open(img_path).convert("RGB")
             w, h = img.size
 
-            # Criar mapa vazio
             heat = np.zeros((h, w))
 
             df_stim = df[df["stimulus"] == stimulus]
@@ -40,16 +38,11 @@ if uploaded:
                 y = int(np.clip(row["y"], 0, h - 1))
                 heat[y, x] += 1
 
-            # Blur simples com convolução
-            from scipy.ndimage import gaussian_filter
             heat = gaussian_filter(heat, sigma=25)
-
-            # Normalize
             heat_norm = heat / (heat.max() + 1e-9)
 
-            # Exibir overlay usando matplotlib
             fig, ax = plt.subplots(figsize=(10, 6))
-            ax.imshow(img, alpha=1.0)
+            ax.imshow(img)
             ax.imshow(heat_norm, cmap="jet", alpha=0.4)
             ax.axis("off")
 

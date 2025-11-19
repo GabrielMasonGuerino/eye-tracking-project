@@ -115,6 +115,9 @@ As AOIs são definidas em formato normalizado:
 - Matplotlib  
 
 ---
+## 🎥 Demonstração em Vídeo
+
+[![Assista à apresentação do projeto](https://img.youtube.com/vi/RPWTqIS_tdQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=RPWTqIS_tdQ)
 
 ## 👤 Autor
 

@@ -118,6 +118,7 @@ As AOIs são definidas em formato normalizado:
 
 ## 👤 Autor
 
-**Gabriel Mason Guerino**  
+**Gabriel Mason Guerino**  **10409928**
+**Mauricio Gabriel Gutierrez Garcia** **10403130**
 Projeto acadêmico envolvendo análise visual e IA aplicada a eye-tracking.
 
